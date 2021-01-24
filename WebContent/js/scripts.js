@@ -40,7 +40,9 @@
       target: '#mainNav',
       offset: 80
     });
-  
+    
+  	
+	
     // Collapse Navbar
     var navbarCollapse = function() {
       if ($("#mainNav").offset().top > 100) {

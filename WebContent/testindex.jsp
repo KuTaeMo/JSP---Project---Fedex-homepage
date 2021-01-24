@@ -112,9 +112,9 @@
 				</div>
 				<br />
 				<br />
-				<!-- Masthead Subheading-->
+				<!-- 메인버튼 3개 -->
 				<ul>
-					<li>
+					<li style="list-style-type: none; float: left;">
 						<button class="mainbutton1">
 						<div>
 							<img src="assets/img/cash.png">
@@ -122,7 +122,7 @@
 						</div>
 						</button>
 					</li>
-					<li>
+					<li style="list-style-type: none; float: left;">
 						<button class="mainbutton2">
 						<div>
 							<img src="assets/img/search.png">
@@ -130,7 +130,7 @@
 						</div>
 						</button>
 					</li>
-					<li>
+					<li style="list-style-type: none; float: left;">
 						<button class="mainbutton3">
 						<div>
 							<img src="assets/img/send.png">
