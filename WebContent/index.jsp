@@ -45,35 +45,63 @@
 						</div>
 						</button>
 					</li>
-					<li style="list-style-type: none; float: left;">
-						<button class="mainbutton3" onclick="send()">
-						<div>
-							<img src="assets/img/send.png">
-							<p>발송</p>
-						</div>
-						</button>
-					</li>
+					<c:choose>
+						<c:when test="${sessionScope.principal != null}">
+							<li style="list-style-type: none; float: left;">
+								<button class="mainbutton3" onclick="send()">
+								<div>
+									<img src="assets/img/send.png">
+									<p>발송</p>
+								</div>
+								</button>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li style="list-style-type: none; float: left;">
+								<button class="mainbutton3" onclick="valid()">
+								<div>
+									<img src="assets/img/send.png">
+									<p>발송</p>
+								</div>
+								</button>
+							</li>
+						</c:otherwise>
+					</c:choose>
+					
 				</ul>
 
 				<br />
 				<!-- 요금조회 -->
-				<div id="charge" style="margin-left: 50px;">
-					<div class="d-flex">
-						<input type="text" name="trackingnumber" class="maininput"
-							placeholder="크기"
-							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; width: 600px; background-color:#E6E6E6;">
+				<form action="/fedexProject/charge?cmd=showcharge" method="post">
+					<div id="charge" style="margin-left: 50px;">
+						<div class="d-flex form-group">
+							<select name="size" style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; width: 600px; background-color:#E6E6E6;">
+								<option selected>크기를 선택하세요</option>
+								<option>500g 미만 - 1호</option>
+								<option>500g ~ 1kg - 2호</option>
+								<option>1kg ~ 1.5kg - 3호</option>
+								<option>1.5kg ~ 2kg - 4호</option>
+								<option>2kg ~ 2.5kg - 5호</option>
+							</select>
+						</div>
+						<br/>
+						<div class="form-group">
+							<select name="sort" style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; width: 600px; background-color:#E6E6E6;">
+								<option selected>종류를 선택하세요</option>
+								<option>의류 / 잡화류</option>
+								<option>서적 / 기타</option>
+								<option>가전제품류</option>
+								<option>식품류</option>
+								<option>서신 / 서류</option>
+							</select>
+						</div>
+						<br/>
+						<div style="float: right;">
+							<button type="submit" class="searchbutton">요금 조회</button>
+						</div>
 					</div>
-					<br/>
-					<div>
-						<input type="text" name="trackingnumber" class="maininput"
-							placeholder="종류"
-							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; width: 600px; background-color:#E6E6E6">
-					</div>
-					<br/>
-					<div style="float: right;">
-						<button type="button" class="searchbutton">요금 조회</button>
-					</div>
-				</div>
+				</form>
+				
 				<!-- 배송조회 -->
 				<div id="searchpost">
 					<div class="d-flex">
@@ -242,6 +270,9 @@
 	
 	<!-- Bootstrap core JS-->
 	<script>
+	function valid() {
+		alert("로그인을 해주세요");
+	}
 	window.onload=function(){
 		$("#charge").hide();
 		$("#searchpost").show();

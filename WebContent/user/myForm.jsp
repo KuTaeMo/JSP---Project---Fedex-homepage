@@ -2,13 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <header class="masthead text-black text-center">
-	<div class="d-flex" style="background-image: URL(assets/img/joinbg.jpg); background-size: 100%; background-repeat: no-repeat; height: 400px;">
+	<div class="d-flex" style="background-image: URL(assets/img/myformbg.jpg); background-size: 100%; background-repeat: no-repeat; height: 400px;">
 		<div class="container d-flex"
 			style="height: 10px; justify-content: flex-start;">
 			<!-- Masthead Heading-->
 			<div
-				style="padding-top: 50px; font-size: 50px; color: white; float: left">FedEx
-				회원가입</div>
+				style="padding-top: 50px; font-size: 50px; color: white; float: left">내 정보</div>
 
 			<div>
 				<br /> <br />
@@ -58,22 +57,21 @@
 						</div>
 						<div>
 							<div class="form-group" style="margin-bottom: 0 !important">
-								<input type="id" name="username" class="maininput" id="username" required
-									style="margin: 0 0 5px 15px; width: 200px; height: 40px;">
-								<button type="button" class="searchbutton" style="height: 40px; width: 100px; font-size: 15px;" onclick="usernameCheck()">중복 체크</button>
+								<input type="id" name="username" class="maininput" id="username" required readonly
+									style="margin: 0 0 5px 15px; width: 200px; height: 40px;" value="${sessionScope.principal.username}">
 							</div>
 							<div class="form-group" style="margin-bottom: 0 !important">
-								<input type="password" name="password" class="maininput" required
+								<input type="password" name="password" class="maininput" required 
 									id="password"
-									style="margin: 0 0 5px 15px; width: 200px; height: 40px;">
+									style="margin: 0 0 5px 15px; width: 200px; height: 40px;" value="${sessionScope.principal.password}">
 							</div>
 							<div class="form-group" style="margin-bottom: 0 !important">
 								<input type="email" name="email" class="maininput" id="email" required
-									style="margin: 0 0 5px 15px; width: 200px; height: 40px;">
+									style="margin: 0 0 5px 15px; width: 200px; height: 40px;" value="${sessionScope.principal.email}">
 							</div>
 							<div class="form-group" style="margin-bottom: 0 !important">
 								<input type="text" name="phone" class="maininput" id="phone" required
-									style="margin: 0 0 5px 15px; width: 200px; height: 40px;">
+									style="margin: 0 0 5px 15px; width: 200px; height: 40px;" value="${sessionScope.principal.phone}">
 							</div>
 						</div>
 					</div>
@@ -81,20 +79,21 @@
 					<div class="d-flex">
 						<div>
 							<div class="d-flex"
-								style="height: 40px; margin-bottom: 5px; align-items: center;">Address</div>
+								style="height: 40px; margin-bottom: 5px; align-items: center;">address</div>
 							<div class="d-flex"
-								style="height: 40px; margin-bottom: 5px; align-items: center;">PostCode</div>
+								style="height: 40px; margin-bottom: 5px; align-items: center;">postcode</div>
 							
 						</div>
+						
 						<div>
 							<div class="form-group">
 								<input type="text" name="address" class="maininput" id="address" required readonly
-									style="margin: 0 0 5px 15px; width: 200px; height: 40px;">
+									style="margin: 0 0 5px 15px; width: 200px; height: 40px;" value="${sessionScope.principal.address}">
 							<div class="form-group">
 							<div>
 								<input type="text" name="postcode" class="maininput" required readonly
 									id="postcode"
-									style="margin: 0 0 5px 15px; width: 200px; height: 40px;">
+									style="margin: 0 0 5px 15px; width: 200px; height: 40px;" value="${sessionScope.principal.postcode}">
 							</div>
 							<div align="right">
 								<button type="button" class="searchbutton" onClick="goPopup();" style="font-size: 15px; height: 40px; width: 100px;">주소검색</button>
@@ -107,7 +106,7 @@
 		</div>
 
 			<div class="d-flex" style="justify-content: flex-end;">
-				<button type="submit" class="searchbutton" style="height: 40px;">회원등록</button>
+				<button type="submit" class="searchbutton" style="height: 40px;">수 정</button>
 			</div>
 		</div>
 	</form>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -113,9 +113,21 @@
 					</li>
 				</ul>
 			</div>
-			<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger headera"
+			<c:choose>
+				<c:when test="${sessionScope.principal != null}">
+					<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger headera"
+					href="<%=request.getContextPath()%>/user?cmd=myForm">내 정보</a>
+					<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger headera"
+					href="<%=request.getContextPath()%>/user?cmd=logout">로그아웃</a>
+					<a href="<%=request.getContextPath()%>/post?cmd=postSearch"><img src="assets/img/searchicon.png"></a>
+				</c:when>
+				<c:otherwise>
+					<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger headera"
 					href="<%=request.getContextPath()%>/user?cmd=loginForm">등록/로그인<img src="assets/img/bglogin.png" /></a>
-				<a href="<%=request.getContextPath()%>/post?cmd=postSearch"><img src="assets/img/searchicon.png"></a>
+					<a href="<%=request.getContextPath()%>/post?cmd=postSearch"><img src="assets/img/searchicon.png"></a>
+				</c:otherwise>
+			</c:choose>
+
 			<button
 				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-toggle="collapse" data-target="#navbarResponsive"

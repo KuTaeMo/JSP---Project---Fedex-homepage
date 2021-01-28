@@ -15,9 +15,8 @@
 	
 	<filter>
 		<filter-name>charConfig</filter-name>
-		<filter-class>com.cos.blog.config.CharConfig</filter-class>
+		<filter-class>com.cos.fedex.config.CharConfig</filter-class>
 	</filter>
-	
 	<filter-mapping>
 		<filter-name>charConfig</filter-name>
 		<url-pattern>/*</url-pattern>

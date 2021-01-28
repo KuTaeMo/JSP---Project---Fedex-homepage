@@ -5,10 +5,10 @@ import com.cos.fedex.domain.user.UserDao;
 import com.cos.fedex.domain.user.dto.JoinReqDto;
 import com.cos.fedex.domain.user.dto.LoginReqDto;
 
-public class UserService {
+public class PostService {
 	private UserDao userDao; 
 
-	public UserService() {
+	public PostService() {
 		userDao = new UserDao();
 	}
 	// 

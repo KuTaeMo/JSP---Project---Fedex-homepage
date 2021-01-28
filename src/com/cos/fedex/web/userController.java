@@ -1,6 +1,8 @@
 package com.cos.fedex.web;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cos.fedex.domain.user.User;
+import com.cos.fedex.domain.user.dto.JoinReqDto;
 import com.cos.fedex.domain.user.dto.LoginReqDto;
 import com.cos.fedex.service.UserService;
 import com.cos.fedex.util.Script;
@@ -20,7 +23,6 @@ public class userController extends HttpServlet {
 
     public userController() {
         super();
-
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,6 +59,46 @@ public class userController extends HttpServlet {
 			}else {
 				Script.back(response, "로그인실패");
 			}
+		}else if(cmd.equals("join")) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String email = request.getParameter("email");
+			String phone=request.getParameter("phone");
+			String address = request.getParameter("address");
+			String postcode=request.getParameter("postcode");
+			JoinReqDto dto = new JoinReqDto();
+			dto.setUsername(username);
+			dto.setPassword(password);
+			dto.setEmail(email);
+			dto.setPhone(phone);
+			dto.setAddress(address);
+			dto.setPostcode(postcode);
+			System.out.println("회원가입 : "+dto);
+			int result = userService.회원가입(dto);
+			if(result == 1) {
+				response.sendRedirect("index.jsp");
+			}else {
+				Script.back(response,"회원가입 실패");
+			}
+		}else if(cmd.equals("usernameCheck")) {
+			BufferedReader br = request.getReader();//데이터가 text이기 때문에 버퍼로 읽음
+			String username = br.readLine();
+			System.out.println(username);
+			int result = userService.유저네임중복체크(username);
+			PrintWriter out = response.getWriter();
+			if(result == 1) {
+				out.print("ok");
+			}else {
+				out.print("fail");
+			}
+			out.flush();
+		}else if(cmd.equals("myForm")) {
+			RequestDispatcher dis=request.getRequestDispatcher("user/myForm.jsp");
+			dis.forward(request, response);
+		}else if(cmd.equals("logout")) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			response.sendRedirect("index.jsp");
 		}
 	}
 }
