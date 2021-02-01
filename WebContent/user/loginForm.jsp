@@ -15,12 +15,12 @@
 					<div class="d-flex form-group">
 						<div>
 							<div class="form-group">
-								<input type="id" name="username" class="maininput form-control"
+								<input type="id" name="username" class="maininput-i form-control"
 								placeholder="ID를 입력해주세요"
 								style="font-weight: bold !important; padding-left: 10px !important; font-size: 12px !important; height:60px !important; background-color:#E6E6E6 !important;">
 							</div>
 							<div class="form-group">
-								<input type="password" name="password" class="maininput form-control"
+								<input type="password" name="password" class="maininput-i form-control"
 								placeholder="PW를 입력해주세요"
 								style="font-weight: bold !important; padding-left: 10px !important; font-size: 12px !important; height:60px !important; background-color:#E6E6E6 !important;">
 							</div>

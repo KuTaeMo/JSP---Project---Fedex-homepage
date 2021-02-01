@@ -26,6 +26,8 @@
 <script src="assets/mail/contact_me.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css?after" rel="stylesheet" type="text/css"/>
 <!-- dropdown -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Google fonts-->
@@ -34,13 +36,12 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="css/styles.css?after" rel="stylesheet" />
+
 </head>
 <body id="page-top">
 	<!-- Navigation-->
 	<nav
-		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+		class="navbar navbar-expand-lg headbg text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
 			<!-- fedex 로고  -->

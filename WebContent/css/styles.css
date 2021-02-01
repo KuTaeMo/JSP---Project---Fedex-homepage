@@ -273,6 +273,12 @@ input {
 	height: 50px;
 }
 
+.maininput-i{
+	border: none !important;
+	width: 450px !important;
+	height: 50px !important;
+}
+
 [role=button] {
 	cursor: pointer;
 }
@@ -6142,7 +6148,7 @@ a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-prima
 	background-color: #148f77 !important;
 }
 
-.bg-secondary {
+.headbg {
 	background-color: #4d148c !important;
 }
 

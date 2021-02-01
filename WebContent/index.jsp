@@ -103,49 +103,69 @@
 				</form>
 				
 				<!-- 배송조회 -->
-				<div id="searchpost">
+				<form action="/fedexProject/post?cmd=postsearch" method="post">
+					<div id="searchpost">
 					<div class="d-flex">
-						<input type="text" name="trackingnumber" class="maininput"
+						<input type="text" name="postid" class="maininput"
 							placeholder="배송 조회 ID"
 							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6">
-						<button type="button" class="searchbutton">배송 조회</button>
+						<button type="submit" class="searchbutton">배송 조회</button>
 					</div>
 					<div class="d-flex" style="color: white; margin-top: 8px;">
 						<a href="#" class="suba">다수의 배송조회 번호</a> | <a href="#"
 							class="suba">도움이 필요하십니까?</a>
 					</div>
-				</div>
+					</div>
+				</form>
+				
 
 
 				<!-- 발송 -->
-				<div id="send">
-					<div style="margin-bottom: 5px;">
-						<input type="text" name="trackingnumber" class="maininput"
-							placeholder="수신자 이름"
-							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6">
+				<form action="/fedexProject/post?cmd=send" method="post">
+					<div id="send">
+					
+						<div class="form-group" style="margin-bottom: 5px;">
+							<input type="hidden" name="username" id="username" value="${sessionScope.principal.username}">
+							<input type="text" name="receivername" id="receivername" class="maininput"
+								placeholder="수신자 이름" required
+								style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6">
+						</div>
+						<div class="form-group d-flex" style="margin-bottom: 5px;">
+							<input type="text" name="receiveraddress" id="receiveraddress" class="maininput"
+								placeholder="주소" required readonly
+								style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6; width: 350px;">
+							<button type="button" class="searchbutton"style="width: 95px; margin-left: 5px;" onclick="goPopup()">주소찾기</button>							
+						</div>
+						<div class="form-group" style="margin-bottom: 5px;">
+							<input type="text" name="receiverpostcode" id="receiverpostcode" class="maininput"
+								placeholder="우편번호" required readonly
+								style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6">
+						</div>
+						<div class="form-group" style="margin-bottom: 5px;">
+							<select name="size" style="padding-left: 10px; font-size: 12px; height:60px; width: 450px; background-color:#E6E6E6; border: none;">
+								<option selected>크기를 선택하세요</option>
+								<option>500g 미만 - 1호</option>
+								<option>500g ~ 1kg - 2호</option>
+								<option>1kg ~ 1.5kg - 3호</option>
+								<option>1.5kg ~ 2kg - 4호</option>
+								<option>2kg ~ 2.5kg - 5호</option>
+							</select>
+						</div>
+						<div class="d-flex form-group">
+							<select name="sort" style="padding-left: 10px; font-size: 12px; height:60px; width: 200px; background-color:#E6E6E6; border: none;">
+								<option selected>종류를 선택하세요</option>
+								<option>의류 / 잡화류</option>
+								<option>서적 / 기타</option>
+								<option>가전제품류</option>
+								<option>식품류</option>
+								<option>서신 / 서류</option>
+							</select>
+							<button type="submit" class="searchbutton">등록</button>
+						</div>
 					</div>
-					<div style="margin-bottom: 5px;">
-						<input type="text" name="trackingnumber" class="maininput"
-							placeholder="주소"
-							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6">
-					</div>
-					<div style="margin-bottom: 5px;">
-						<input type="text" name="trackingnumber" class="maininput"
-							placeholder="우편번호"
-							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6">
-					</div>
-					<div style="margin-bottom: 5px;">
-						<input type="text" name="trackingnumber" class="maininput"
-							placeholder="크기"
-							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; background-color:#E6E6E6">
-					</div>
-					<div class="d-flex">
-						<input type="text" name="trackingnumber" class="maininput"
-							placeholder="종류"
-							style="font-weight: bold; padding-left: 10px; font-size: 12px; height:60px; width: 200px; background-color:#E6E6E6">
-						<button type="button" class="searchbutton">등록</button>
-					</div>
-				</div>
+				</form>
+				
+				
 			</div>
 		</div>
 	</header>
@@ -260,13 +280,7 @@
 				</div>
 			</div>
 	</div>
-	<!-- Footer-->
-<%@ include file="../layout/footer.jsp"%>
-	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
-	<div class="scroll-to-top d-lg-none position-fixed">
-		<a class="js-scroll-trigger d-block text-center text-white rounded"
-			href="#page-top"><i class="fa fa-chevron-up"></i></a>
-	</div>
+</section>
 	
 	<!-- Bootstrap core JS-->
 	<script>
@@ -296,6 +310,18 @@
 		$("#searchpost").hide();
 		$("#send").show();
 	}
+	function goPopup() {
+		var pop = window.open("/fedexProject/user/jusoPopup.jsp", "pop",
+				"width=570,height=420, scrollbars=yes, resizable=yes");
+	}
+	function jusoCallBack(roadFullAddr,zipNo) {
+		var address = document.querySelector("#receiveraddress");
+		var postcode = document.querySelector("#receiverpostcode");
+		address.value = roadFullAddr;
+		postcode.value=zipNo;
+	}
 	</script>
+		<!-- Footer-->
+<%@ include file="../layout/footer.jsp"%>
 </body>
 </html>

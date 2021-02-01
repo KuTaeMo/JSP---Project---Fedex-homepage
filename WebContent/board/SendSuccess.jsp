@@ -56,28 +56,28 @@
 					</div>
 					<div style="margin-left: 10px;">
 						<div>
-							<input type="text" value="${postsearch.id}" readonly>
+							<input type="text" value="${post.id}" readonly>
 						</div>
 						<div>
-							<input type="text" value="${postsearch.username} 님" readonly>
+							<input type="text" value="${post.username} 님" readonly>
 						</div>
 						<div>
-							<input type="text" value="${postsearch.receivername} 님" readonly>
+							<input type="text" value="${post.receivername} 님" readonly>
 						</div>
 						<div>
-							<input type="text" value="${postsearch.receiveraddress}" readonly>
+							<input type="text" value="${post.receiveraddress}" readonly>
 						</div>
 						<div>
-							<input type="text" value="${postsearch.receiverpostcode}" readonly>
+							<input type="text" value="${post.receiverpostcode}" readonly>
 						</div>
 						<div>
-							<input type="text" value="${postsearch.size}호" readonly>
+							<input type="text" value="${post.size}호" readonly>
 						</div>
 						<div>
-							<input type="text" value="${postsearch.sort}" readonly>
+							<input type="text" value="${post.sort}" readonly>
 						</div>
 						<div>
-							<input type="text" value="${postsearch.charge}원" readonly>
+							<input type="text" value="${post.charge}원" readonly>
 						</div>
 					</div>
 				</div>

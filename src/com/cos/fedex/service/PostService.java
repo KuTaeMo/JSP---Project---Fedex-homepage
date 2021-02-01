@@ -1,26 +1,30 @@
 package com.cos.fedex.service;
 
+import com.cos.fedex.domain.post.Post;
+import com.cos.fedex.domain.post.PostDao;
+import com.cos.fedex.domain.post.dto.SendRespDto;
 import com.cos.fedex.domain.user.User;
 import com.cos.fedex.domain.user.UserDao;
 import com.cos.fedex.domain.user.dto.JoinReqDto;
 import com.cos.fedex.domain.user.dto.LoginReqDto;
 
 public class PostService {
-	private UserDao userDao; 
+	private PostDao postDao; 
 
 	public PostService() {
-		userDao = new UserDao();
+		postDao=new PostDao();
 	}
 	// 
-	public User 로그인(LoginReqDto dto) {
-		return userDao.findByUsernameAndPassword(dto);
+	public int 발송(Post post) {
+		int result=postDao.send(post);
+		if(result==1) {
+			int re=postDao.findPk();
+			return re;
+		}else {
+			return -1;
+		}
 	}
-	public int 회원가입(JoinReqDto dto) {
-		int result = userDao.save(dto);
-		return result;
-	}
-	public int 유저네임중복체크(String username) {
-		int result = userDao.findByUsername(username);
-		return result;
+	public SendRespDto 배송조회(int id) {
+		return postDao.findById(id);
 	}
 }

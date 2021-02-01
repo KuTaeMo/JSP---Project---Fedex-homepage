@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.cos.fedex.domain.user.User;
 import com.cos.fedex.domain.user.dto.JoinReqDto;
 import com.cos.fedex.domain.user.dto.LoginReqDto;
+import com.cos.fedex.domain.user.dto.UpdateReqDto;
 import com.cos.fedex.service.UserService;
 import com.cos.fedex.util.Script;
 
@@ -99,6 +100,37 @@ public class userController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("index.jsp");
+		}else if(cmd.equals("updateUser")) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String email = request.getParameter("email");
+			String phone=request.getParameter("phone");
+			String address = request.getParameter("address");
+			String postcode=request.getParameter("postcode");
+			
+			UpdateReqDto dto=UpdateReqDto.builder()
+					.username(username)
+					.password(password)
+					.email(email)
+					.phone(phone)
+					.address(address)
+					.postcode(postcode)
+					.build();
+			
+			int result=userService.유저수정(dto);
+			if(result==1) {
+				HttpSession session=request.getSession();
+				User userEntity=(User)session.getAttribute("principal");
+				userEntity.setPassword(password);
+				userEntity.setEmail(email);
+				userEntity.setPhone(phone);
+				userEntity.setAddress(address);
+				userEntity.setPostcode(postcode);
+				RequestDispatcher dis=request.getRequestDispatcher("user/myForm.jsp");
+				dis.forward(request, response);
+			}else {
+				Script.back(response, "정보 수정 실패");
+			}
 		}
 	}
 }

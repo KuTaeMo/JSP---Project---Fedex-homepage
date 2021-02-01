@@ -35,7 +35,7 @@
 </header>
 <section class="portfolio" id="portfolio">
 	<div class="container">
-	<form action="/fedexProject/user?cmd=join" method="post" onsubmit="return valid()">
+	<form action="/fedexProject/user?cmd=updateUser" method="post">
 		<div style="border: solid 1px gray; background-color: #E6E6E6; padding: 10px;">
 			<img style="margin-left: 120px;" src="assets/img/logo.png" />
 			<!-- 큰박스 -->

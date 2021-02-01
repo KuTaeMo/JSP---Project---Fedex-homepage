@@ -50,9 +50,6 @@
 						<div style="margin-top: 5px;"> PostCharge :</div>
 					</div>
 					<div style="margin-left: 10px;">
-					<%
-						System.out.println();
-					%>
 						<div><input type="text" value="${charge.size}호" readonly></div>
 						<div><input type="text" value="${charge.sort}" readonly></div>
 						<div><input type="text" value="${charge.postcharge}원" readonly></div>

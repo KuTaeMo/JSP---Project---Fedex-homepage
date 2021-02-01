@@ -7,9 +7,29 @@ import java.sql.ResultSet;
 import com.cos.fedex.config.DB;
 import com.cos.fedex.domain.user.dto.JoinReqDto;
 import com.cos.fedex.domain.user.dto.LoginReqDto;
+import com.cos.fedex.domain.user.dto.UpdateReqDto;
 
 public class UserDao {
-
+	public int updateUser(UpdateReqDto dto) {
+		String sql = "UPDATE user SET password=?,email=?,phone=?,address=?,postcode=? where username=?";
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getPassword());
+			pstmt.setString(2, dto.getEmail());
+			pstmt.setString(3, dto.getPhone());
+			pstmt.setString(4, dto.getAddress());
+			pstmt.setString(5, dto.getPostcode());
+			pstmt.setString(6, dto.getUsername());
+			
+			int result=pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	public User findByUsernameAndPassword(LoginReqDto dto) {
 		String sql = "SELECT id,username,password,email,address,phone,postcode FROM user WHERE username = ?AND password=?";
 		Connection conn = DB.getConnection();

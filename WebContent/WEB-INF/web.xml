@@ -12,13 +12,5 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-	
-	<filter>
-		<filter-name>charConfig</filter-name>
-		<filter-class>com.cos.fedex.config.CharConfig</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>charConfig</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+
 </web-app>
